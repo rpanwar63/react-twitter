@@ -32,6 +32,7 @@ textarea {
 .app-section {
     display: flex;
     flex-direction: column;
+    margin-bottom: 30px;
 }
 
 .app-section:not(:first-child) {
@@ -59,4 +60,8 @@ textarea {
 .placeholder-container {
     display: flex;
     justify-content: center;
+}
+
+.view-link {
+    color: #ffffff;
 }

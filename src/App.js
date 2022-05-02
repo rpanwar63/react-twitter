@@ -21,16 +21,8 @@ function App() {
   // Logs in a Facebook user
   const logInToFB = React.useCallback(() => {
     window.FB.login((response) => {
-      setFbUserAccessToken(response.authResponse.accessToken);
+      setFbUserAccessToken(response.authResponse.accessToken)
     });
-    window.FB.api(
-      '/me',
-      'GET',
-      {"fields":"id,name"},
-      function(response) {
-          setName(response.name)
-      }
-    );
   }, []);
 
 
@@ -48,14 +40,6 @@ function App() {
       window.FB.getLoginStatus((response) => {
         setFbUserAccessToken(response.authResponse?.accessToken);
       });
-      window.FB.api(
-        '/me',
-        'GET',
-        {"fields":"id,name"},
-        function(response) {
-            setName(response.name)
-        }
-      );
     }
   }, [isFbSDKInitialized]);
 
@@ -65,6 +49,14 @@ function App() {
       window.FB.api(
         `/${PAGE_ID}?fields=access_token&access_token=${fbUserAccessToken}`,
         ({ access_token }) => setFbPageAccessToken(access_token)
+      );
+      window.FB.api(
+        '/me',
+        'GET',
+        {"fields":"id,name"},
+        function(response) {
+            setName(response.name)
+        }
       );
     }
   }, [fbUserAccessToken]);
