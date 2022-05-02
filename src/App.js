@@ -14,6 +14,7 @@ function App() {
   // App state
   const [fbUserAccessToken, setFbUserAccessToken] = React.useState();
   const [fbPageAccessToken, setFbPageAccessToken] = React.useState();
+  const [name, setName] = React.useState();
   const [postText, setPostText] = React.useState();
   const [isPublishing, setIsPublishing] = React.useState(false);
 
@@ -21,7 +22,11 @@ function App() {
   const logInToFB = React.useCallback(() => {
     window.FB.login((response) => {
       setFbUserAccessToken(response.authResponse.accessToken);
-      console.log(response)
+      const user = fetch(`https://graph.facebook.com/${response.authResponse.userID}/?fields=name&access_token=${response.authResponse.accessToken}`)
+      .then(res => {
+        setName(res.name);
+        console.log(res);
+      })
     });
   }, []);
 
@@ -88,6 +93,7 @@ function App() {
       <main id="app-main">
         {fbPageAccessToken ? (
           <>
+          <h2 className="placeholder-container">Welcome {name}</h2>
           <section className="app-section">
             <h3>Write something to the page</h3>
             <textarea
