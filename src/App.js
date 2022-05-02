@@ -46,6 +46,7 @@ function App() {
         {"fields":"id,name"},
         function(response) {
             console.log('new ' + JSON.stringify(response))
+            setName(response.name)
         }
       );
     }
