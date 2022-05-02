@@ -21,6 +21,7 @@ function App() {
   const logInToFB = React.useCallback(() => {
     window.FB.login((response) => {
       setFbUserAccessToken(response.authResponse.accessToken);
+      console.log(response)
     });
   }, []);
 
@@ -73,7 +74,7 @@ function App() {
   return (
     <div id="app">
       <header id="app-header">
-        <p id="logo-text">FB Page API</p>
+        <p id="logo-text">React Facebook Test</p>
         {fbUserAccessToken ? (
           <button onClick={logOutOfFB} className="btn confirm-btn">
             Log out
@@ -86,6 +87,7 @@ function App() {
       </header>
       <main id="app-main">
         {fbPageAccessToken ? (
+          <>
           <section className="app-section">
             <h3>Write something to the page</h3>
             <textarea
@@ -103,6 +105,9 @@ function App() {
               {isPublishing ? "Publishing..." : "Publish"}
             </button>
           </section>
+          <p>View your post</p>
+          <a href="https://www.facebook.com/React-test-app-100165859364792" target="_blank"></a>
+          </>
         ) : (
           <h2 className="placeholder-container">Welcome!</h2>
         )}
