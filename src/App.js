@@ -22,14 +22,9 @@ function App() {
   const logInToFB = React.useCallback(() => {
     window.FB.login((response) => {
       setFbUserAccessToken(response.authResponse.accessToken);
-      fetch(`https://graph.facebook.com/${response.authResponse.userID}/?fields=name&access_token=${response.authResponse.accessToken}`)
-      .then(res => {
-        setName(res.name);
-        console.log('res ' + res)
-      })
-      console.log('response ' + response);
     });
   }, []);
+
 
   // Logs out the current Facebook user
   const logOutOfFB = React.useCallback(() => {
@@ -45,6 +40,14 @@ function App() {
       window.FB.getLoginStatus((response) => {
         setFbUserAccessToken(response.authResponse?.accessToken);
       });
+      window.FB.api(
+        '/me',
+        'GET',
+        {"fields":"id,name"},
+        function(response) {
+            console.log('new ' + JSON.stringify(response))
+        }
+      );
     }
   }, [isFbSDKInitialized]);
 
