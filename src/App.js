@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./styles.css";
-import { useInitFbSDK } from "./fb-hooks";
+import { useInitFbSDK } from "./utils/fbHooks";
 
 // You can find your Page ID
 // in the "About" section of your page on Facebook.
