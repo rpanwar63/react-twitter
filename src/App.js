@@ -22,7 +22,7 @@ function App() {
   const logInToFB = React.useCallback(() => {
     window.FB.login((response) => {
       setFbUserAccessToken(response.authResponse.accessToken);
-      const user = fetch(`https://graph.facebook.com/${response.authResponse.userID}/?fields=name&access_token=${response.authResponse.accessToken}`)
+      fetch(`https://graph.facebook.com/${response.authResponse.userID}/?fields=name&access_token=${response.authResponse.accessToken}`)
       .then(res => {
         setName(res.name);
         console.log(res);
