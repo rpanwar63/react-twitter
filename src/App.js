@@ -105,8 +105,7 @@ function App() {
               {isPublishing ? "Publishing..." : "Publish"}
             </button>
           </section>
-          <p>View your post</p>
-          <a href="https://www.facebook.com/React-test-app-100165859364792" target="_blank"></a>
+          <a href="https://www.facebook.com/React-test-app-100165859364792" target="_blank">View your post</a>
           </>
         ) : (
           <h2 className="placeholder-container">Welcome!</h2>
