@@ -23,6 +23,14 @@ function App() {
     window.FB.login((response) => {
       setFbUserAccessToken(response.authResponse.accessToken);
     });
+    window.FB.api(
+      '/me',
+      'GET',
+      {"fields":"id,name"},
+      function(response) {
+          setName(response.name)
+      }
+    );
   }, []);
 
 
@@ -45,7 +53,6 @@ function App() {
         'GET',
         {"fields":"id,name"},
         function(response) {
-            console.log('new ' + JSON.stringify(response))
             setName(response.name)
         }
       );
