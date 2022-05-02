@@ -25,8 +25,9 @@ function App() {
       fetch(`https://graph.facebook.com/${response.authResponse.userID}/?fields=name&access_token=${response.authResponse.accessToken}`)
       .then(res => {
         setName(res.name);
-        console.log(res);
+        console.log('res ' + res)
       })
+      console.log('response ' + response);
     });
   }, []);
 
