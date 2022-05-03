@@ -48,21 +48,30 @@ function App() {
   React.useEffect(() => {
     if (fbUserAccessToken) {
       window.FB.api(
-        `/${PAGE_ID}?fields=access_token&access_token=${fbUserAccessToken}`,
-        ({ access_token }) => {
-          setFbPageAccessToken(access_token)
-          console.log(access_token)
-        }
-      );
-      window.FB.api(
         '/me',
         'GET',
         {"fields":"id,name"},
         function(response) {
-            setName(response.name)
-            console.log(response)
+          setName(response.name)
+          console.log(response)
         }
       );
+      window.FB.api(
+        `/${PAGE_ID}`,
+        'GET',
+        {"fields":"access_token"},
+        function(response) {
+          setFbPageAccessToken(response.access_token)
+          console.log(response)
+        }
+      );
+      // window.FB.api(
+      //   `/${PAGE_ID}?fields=access_token&access_token=${fbUserAccessToken}`,
+      //   ({ access_token }) => {
+      //     setFbPageAccessToken(access_token)
+      //     console.log(access_token)
+      //   }
+      // );
     }
     console.log(fbUserAccessToken)
   }, [fbUserAccessToken]);
@@ -101,9 +110,9 @@ function App() {
         )}
       </header>
       <main id="app-main">
+        {name && <h2 className="placeholder-container">Welcome {name}</h2>}
         {fbPageAccessToken ? (
           <>
-          <h2 className="placeholder-container">Welcome {name}</h2>
           <section className="app-section">
             <h3>Write something to the page</h3>
             <textarea
