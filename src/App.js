@@ -60,6 +60,7 @@ function App() {
         }
       );
     }
+    console.log(fbUserAccessToken)
   }, [fbUserAccessToken]);
 
   // Publishes a post on the Facebook page
