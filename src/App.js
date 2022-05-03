@@ -22,6 +22,7 @@ function App() {
   const logInToFB = React.useCallback(() => {
     window.FB.login((response) => {
       setFbUserAccessToken(response.authResponse.accessToken)
+      console.log(response)
     });
   }, []);
 
