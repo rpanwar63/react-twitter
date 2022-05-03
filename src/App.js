@@ -49,7 +49,10 @@ function App() {
     if (fbUserAccessToken) {
       window.FB.api(
         `/${PAGE_ID}?fields=access_token&access_token=${fbUserAccessToken}`,
-        ({ access_token }) => setFbPageAccessToken(access_token)
+        ({ access_token }) => {
+          setFbPageAccessToken(access_token)
+          console.log(access_token)
+        }
       );
       window.FB.api(
         '/me',
@@ -57,6 +60,7 @@ function App() {
         {"fields":"id,name"},
         function(response) {
             setName(response.name)
+            console.log(response)
         }
       );
     }
